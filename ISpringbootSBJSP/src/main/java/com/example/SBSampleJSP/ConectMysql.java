@@ -140,7 +140,7 @@ public class ConectMysql {
     /**
      * Insert to porfolio
      */
-    public boolean insertProfile(Porfolio pf) {
+    public boolean insertProfile(Porfolio pf) throws Exception {
         long lIdportfolio = 0;
         String SqlMax = "select  max(idportfolio)+1 as newValue from zemoga_test_db.portfolio";
         boolean bResult = false;
@@ -177,7 +177,8 @@ public class ConectMysql {
             bResult = true;
         } catch (Exception ee) {
             ee.printStackTrace();
-            bResult = false;
+            throw new Exception(ee.getMessage());
+            
         } finally {
             try {
                 c.close();
@@ -190,7 +191,7 @@ public class ConectMysql {
     }
 
     /**
-     * Update profle
+     * Update porFolio
      */
     public boolean updateProfile(Porfolio pf) {
 
